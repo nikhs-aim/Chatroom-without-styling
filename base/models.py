@@ -20,6 +20,7 @@ class Room(models.Model):      # room can have only one topic
     updates = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)  # initial time stamp
 
+
     def __str__(self):
         return self.name
 
