@@ -15,11 +15,12 @@ class Room(models.Model):      # room can have only one topic
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)  # it cannot be blank
-    # participants =
+    # related-name- already User model is conected, so we can specify once again by using this
+    participants = models.ManyToManyField(
+        User, related_name='participants', blank=True)
     # changes every time the data is saved
     updates = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)  # initial time stamp
-
 
     def __str__(self):
         return self.name
