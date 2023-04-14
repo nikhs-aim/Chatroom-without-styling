@@ -124,7 +124,10 @@ def createroom(request):
         print(request.POST)  # prints the input in the terminal
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            # to automatically select the user after logging while creating room
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
 
     context = {'form': form}
